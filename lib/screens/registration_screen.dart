@@ -10,6 +10,15 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  String _dropdownValue = '+243';
+  void dropdownCallBack(String? selectedValue) {
+    if (selectedValue is String) {
+      setState(() {
+        _dropdownValue = selectedValue;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,20 +39,51 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             const SizedBox(
               height: 48.0,
             ),
-            TextField(
-                onChanged: (value) {
-                  //Do something with the user input.
-                },
-                decoration:
-                    kTextFieldDecoration.copyWith(hintText: 'Enter you email')),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                DropdownButton(
+                  iconEnabledColor: Colors.black,
+                  dropdownColor: Colors.white,
+                  onChanged: dropdownCallBack,
+                  value: _dropdownValue,
+                  items: const [
+                    DropdownMenuItem<String>(
+                      value: '+243',
+                      child: Text(
+                        '+243',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: '+250',
+                      child: Text(
+                        '+250',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  width: 300,
+                  child: TextField(
+                    onChanged: (value) {},
+                    keyboardType: TextInputType.phone,
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Enter your phone number',
+                    ),
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(
               height: 8.0,
-            ),
-            TextField(
-              onChanged: (value) {
-                //Do something with the user input.
-              },
-              decoration: kTextFieldDecoration,
             ),
             const SizedBox(
               height: 24.0,
