@@ -1,5 +1,10 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/utils/country_model.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -11,12 +16,48 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   String _dropdownValue = '+243';
+
+  late Future<List<CountryModel>> futureCountries;
+  List<CountryModel> _countries = [];
+  String? _selectedCountryCode = '+1';
+
   void dropdownCallBack(String? selectedValue) {
     if (selectedValue is String) {
       setState(() {
         _dropdownValue = selectedValue;
       });
     }
+  }
+
+  Future<void> fetchCountries() async {
+    final url = Uri.parse('https://country-code-au6g.vercel.app/Country.json');
+
+    try {
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        List<dynamic> jsonData = jsonDecode(response.body);
+        List<CountryModel> countryList =
+            jsonData.map((json) => CountryModel.fromJson(json)).toList();
+
+        setState(() {
+          _countries = countryList;
+          if (_countries.isNotEmpty) {
+            _selectedCountryCode = _countries.first.dial_code;
+          }
+        });
+      } else {
+        throw Exception('Failed to load country data');
+      }
+    } catch (e) {
+      log('Error: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchCountries();
   }
 
   @override
@@ -39,54 +80,36 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             const SizedBox(
               height: 48.0,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                DropdownButton(
-                  iconEnabledColor: Colors.black,
-                  dropdownColor: Colors.white,
-                  onChanged: dropdownCallBack,
-                  value: _dropdownValue,
-                  items: const [
-                    DropdownMenuItem<String>(
-                      value: '+243',
-                      child: Text(
-                        '+243',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+            SizedBox(
+              child: DropdownButton<String>(
+                menuWidth: 300,
+                iconEnabledColor: Colors.blueGrey,
+                dropdownColor: Colors.white,
+                value: _selectedCountryCode,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedCountryCode = newValue;
+                  });
+                },
+                items: _countries
+                    .map<DropdownMenuItem<String>>((CountryModel country) {
+                  return DropdownMenuItem<String>(
+                    value: country.dial_code,
+                    child: Text(
+                      '${country.name}(${country.dial_code})',
+                      style: const TextStyle(color: Colors.black),
                     ),
-                    DropdownMenuItem<String>(
-                      value: '+250',
-                      child: Text(
-                        '+250',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  width: 300,
-                  child: TextField(
-                    onChanged: (value) {},
-                    keyboardType: TextInputType.phone,
-                    decoration: kTextFieldDecoration.copyWith(
-                      hintText: 'Enter your phone number',
-                    ),
-                  ),
-                ),
-              ],
+                  );
+                }).toList(),
+              ),
             ),
-            const SizedBox(
-              height: 8.0,
-            ),
-            const SizedBox(
-              height: 24.0,
+            TextField(
+              keyboardType: TextInputType.phone,
+              onChanged: (value) {
+                //Do something with the user input.
+              },
+              decoration:
+                  kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
