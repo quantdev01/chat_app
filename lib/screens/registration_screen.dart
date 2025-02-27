@@ -5,6 +5,7 @@ import 'package:chat_app/constants.dart';
 import 'package:chat_app/utils/country_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -16,6 +17,7 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   String _dropdownValue = '+243';
+  late TextEditingController phoneController = TextEditingController();
 
   late Future<List<CountryModel>> futureCountries;
   List<CountryModel> _countries = [];
@@ -40,12 +42,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         List<CountryModel> countryList =
             jsonData.map((json) => CountryModel.fromJson(json)).toList();
 
-        setState(() {
-          _countries = countryList;
-          if (_countries.isNotEmpty) {
-            _selectedCountryCode = _countries.first.dial_code;
-          }
-        });
+        setState(
+          () {
+            _countries = countryList;
+            if (_countries.isNotEmpty) {
+              _selectedCountryCode = _countries.first.dial_code;
+            }
+          },
+        );
       } else {
         throw Exception('Failed to load country data');
       }
@@ -58,6 +62,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   void initState() {
     super.initState();
     fetchCountries();
+    phoneController;
   }
 
   @override
@@ -80,36 +85,39 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             const SizedBox(
               height: 48.0,
             ),
-            SizedBox(
-              child: DropdownButton<String>(
-                menuWidth: 300,
-                iconEnabledColor: Colors.blueGrey,
-                dropdownColor: Colors.white,
-                value: _selectedCountryCode,
-                onChanged: (String? newValue) {
-                  setState(() {
+            DropdownButton<String>(
+              isExpanded: true,
+              menuWidth: 300,
+              iconEnabledColor: Colors.blueGrey,
+              dropdownColor: Colors.white,
+              value: _selectedCountryCode,
+              onChanged: (String? newValue) {
+                setState(
+                  () {
                     _selectedCountryCode = newValue;
-                  });
-                },
-                items: _countries
-                    .map<DropdownMenuItem<String>>((CountryModel country) {
-                  return DropdownMenuItem<String>(
-                    value: country.dial_code,
-                    child: Text(
-                      '${country.name}(${country.dial_code})',
-                      style: const TextStyle(color: Colors.black),
-                    ),
-                  );
-                }).toList(),
-              ),
+                  },
+                );
+              },
+              items: _countries
+                  .map<DropdownMenuItem<String>>((CountryModel country) {
+                return DropdownMenuItem<String>(
+                  value: country.dial_code,
+                  child: Text(
+                    '${country.name}(${country.dial_code})',
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                );
+              }).toList(),
             ),
             TextField(
+              controller: phoneController,
               keyboardType: TextInputType.phone,
+              style: const TextStyle(color: Colors.black),
               onChanged: (value) {
                 //Do something with the user input.
               },
               decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
+                  kTextFieldDecoration.copyWith(hintText: 'Phone number'),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -118,13 +126,40 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 borderRadius: const BorderRadius.all(Radius.circular(30.0)),
                 elevation: 5.0,
                 child: MaterialButton(
-                  onPressed: () {
-                    //Implement registration functionality.
+                  onPressed: () async {
+                    log("$_selectedCountryCode${phoneController.text}");
+                    FirebaseAuth auth = FirebaseAuth.instance;
+                    await auth.verifyPhoneNumber(
+                      phoneNumber:
+                          '$_selectedCountryCode ${phoneController.text}',
+                      verificationCompleted:
+                          (PhoneAuthCredential credential) async {
+                        await auth.signInWithCredential(credential);
+                      },
+                      verificationFailed: (FirebaseAuthException e) {
+                        if (e.code == 'invalid-phone-number') {
+                          log('The provided phone number is not valid.');
+                        } else {
+                          throw e;
+                        }
+                      },
+                      codeSent: (String verificationId, int? resendToken) async{
+                        // Update the UI - wait for the user to enter the SMS code
+    String smsCode = 'xxxx';
+
+    // Create a PhoneAuthCredential with the code
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: smsCode);
+
+    // Sign the user in (or link) with the credential
+    await auth.signInWithCredential(credential);
+                      },
+                      codeAutoRetrievalTimeout: (String verificationId) {},
+                    );
                   },
                   minWidth: 200.0,
                   height: 42.0,
                   child: const Text(
-                    'Register',
+                    'Get code',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
