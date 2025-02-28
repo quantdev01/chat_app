@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:chat_app/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -56,7 +58,7 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                         child: TextFormField(
                           controller: verificationController1,
                           focusNode: _focusScope1,
-                          keyboardType: TextInputType.phone,
+                          keyboardType: TextInputType.number,
                           style: const TextStyle(color: Colors.black),
                           onChanged: (value) {
                             if (value.length == 1) {
@@ -74,9 +76,8 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                       child: SizedBox(
                         width: 50,
                         child: TextFormField(
-                          controller: verificationController2,
                           focusNode: _focusScope2,
-                          keyboardType: TextInputType.phone,
+                          keyboardType: TextInputType.number,
                           style: const TextStyle(color: Colors.black),
                           onChanged: (value) {
                             //Do something with the user input.
@@ -97,7 +98,7 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                         child: TextFormField(
                           controller: verificationController3,
                           focusNode: _focusScope3,
-                          keyboardType: TextInputType.phone,
+                          keyboardType: TextInputType.number,
                           style: const TextStyle(color: Colors.black),
                           onChanged: (value) {
                             //Do something with the user input.
@@ -115,10 +116,10 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: SizedBox(
                         width: 50,
-                        child: TextField(
+                        child: TextFormField(
                           controller: verificationController4,
                           focusNode: _focusScope4,
-                          keyboardType: TextInputType.phone,
+                          keyboardType: TextInputType.number,
                           style: const TextStyle(color: Colors.black),
                           onChanged: (value) {
                             //Do something with the user input.
@@ -142,7 +143,9 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                 borderRadius: const BorderRadius.all(Radius.circular(30.0)),
                 elevation: 5.0,
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    log('The pin is ${verificationController1.text}');
+                  },
                   minWidth: 200.0,
                   height: 42.0,
                   child: const Text(
