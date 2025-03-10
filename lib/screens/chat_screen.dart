@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/constants.dart';
 
@@ -11,6 +14,27 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   @override
+  void initState() {
+    super.initState();
+    getNewUser();
+  }
+
+  final _auth = FirebaseAuth.instance;
+  late User loggedinUser;
+
+  void getNewUser() async {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        loggedinUser = user;
+      }
+      log(loggedinUser.email.toString());
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -20,6 +44,8 @@ class _ChatScreenState extends State<ChatScreen> {
               icon: const Icon(Icons.close),
               onPressed: () {
                 //Implement logout functionality
+                _auth.signOut();
+                Navigator.pop(context);
               }),
         ],
         title: const Text('⚡️Chat'),

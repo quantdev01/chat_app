@@ -1,70 +1,22 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:chat_app/constants.dart';
-import 'package:chat_app/utils/country_model.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:chat_app/screens/chat_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
-  static const String id = 'registration_screen';
+  static const String id = 'register_screen';
 
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  String _dropdownValue = '+243';
-  late TextEditingController phoneController = TextEditingController();
-
-  late Future<List<CountryModel>> futureCountries;
-  List<CountryModel> _countries = [];
-  String? _selectedCountryCode = '+1';
-
-  void dropdownCallBack(String? selectedValue) {
-    if (selectedValue is String) {
-      setState(() {
-        _dropdownValue = selectedValue;
-      });
-    }
-  }
-
-  Future<void> fetchCountries() async {
-    final url = Uri.parse('https://country-code-au6g.vercel.app/Country.json');
-
-    try {
-      final response = await http.get(url);
-
-      if (response.statusCode == 200) {
-        List<dynamic> jsonData = jsonDecode(response.body);
-        List<CountryModel> countryList =
-            jsonData.map((json) => CountryModel.fromJson(json)).toList();
-
-        setState(
-          () {
-            _countries = countryList;
-            if (_countries.isNotEmpty) {
-              _selectedCountryCode = _countries.first.dial_code;
-            }
-          },
-        );
-      } else {
-        throw Exception('Failed to load country data');
-      }
-    } catch (e) {
-      log('Error: $e');
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    fetchCountries();
-    phoneController;
-  }
-
+  var email = '';
+  var pw = '';
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,87 +37,57 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             const SizedBox(
               height: 48.0,
             ),
-            DropdownButton<String>(
-              isExpanded: true,
-              menuWidth: 300,
-              iconEnabledColor: Colors.blueGrey,
-              dropdownColor: Colors.white,
-              value: _selectedCountryCode,
-              onChanged: (String? newValue) {
-                setState(
-                  () {
-                    _selectedCountryCode = newValue;
-                  },
-                );
-              },
-              items: _countries
-                  .map<DropdownMenuItem<String>>((CountryModel country) {
-                return DropdownMenuItem<String>(
-                  value: country.dial_code,
-                  child: Text(
-                    '${country.name}(${country.dial_code})',
-                    style: const TextStyle(color: Colors.black),
-                  ),
-                );
-              }).toList(),
-            ),
             TextField(
-              controller: phoneController,
-              keyboardType: TextInputType.phone,
+              textAlign: TextAlign.center,
               style: const TextStyle(color: Colors.black),
+              keyboardType: TextInputType.emailAddress,
               onChanged: (value) {
                 //Do something with the user input.
+                email = value;
               },
               decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Phone number'),
+                  kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
+            ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            TextField(
+              style: const TextStyle(color: Colors.black),
+              textAlign: TextAlign.center,
+              obscureText: true,
+              onChanged: (value) {
+                //Do something with the user input.
+                pw = value;
+              },
+              decoration: kTextFieldDecoration,
+            ),
+            const SizedBox(
+              height: 24.0,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
-                color: Colors.blueAccent,
+                color: Colors.lightBlueAccent,
                 borderRadius: const BorderRadius.all(Radius.circular(30.0)),
                 elevation: 5.0,
                 child: MaterialButton(
                   onPressed: () async {
-                    log("$_selectedCountryCode${phoneController.text}");
-                    FirebaseAuth auth = FirebaseAuth.instance;
-                    await auth.verifyPhoneNumber(
-                      phoneNumber:
-                          '$_selectedCountryCode ${phoneController.text}',
-                      verificationCompleted:
-                          (PhoneAuthCredential credential) async {
-                        await auth.signInWithCredential(credential);
-                      },
-                      verificationFailed: (FirebaseAuthException e) {
-                        if (e.code == 'invalid-phone-number') {
-                          log('The provided phone number is not valid.');
-                        } else {
-                          throw e;
-                        }
-                      },
-                      codeSent:
-                          (String verificationId, int? resendToken) async {
-                        // Update the UI - wait for the user to enter the SMS code
-
-                        String smsCode = 'xxxx';
-
-                        // Create a PhoneAuthCredential with the code
-                        PhoneAuthCredential credential =
-                            PhoneAuthProvider.credential(
-                                verificationId: verificationId,
-                                smsCode: smsCode);
-
-                        // Sign the user in (or link) with the credential
-                        await auth.signInWithCredential(credential);
-                      },
-                      codeAutoRetrievalTimeout: (String verificationId) {},
-                    );
+                    try {
+                      final uer = await _auth.createUserWithEmailAndPassword(
+                        email: email,
+                        password: pw,
+                      );
+                      if (uer.user != null) {
+                        Navigator.pushNamed(context, ChatScreen.id);
+                      }
+                    } catch (e) {
+                      log(e.toString());
+                    }
                   },
                   minWidth: 200.0,
                   height: 42.0,
                   child: const Text(
-                    'Get code',
-                    style: TextStyle(color: Colors.white),
+                    'Register',
                   ),
                 ),
               ),

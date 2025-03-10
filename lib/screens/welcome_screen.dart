@@ -5,7 +5,6 @@ import 'package:chat_app/components/rounded_button.dart';
 import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
