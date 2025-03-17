@@ -9,7 +9,9 @@ import 'package:chat_app/screens/welcome_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    
+  );
   runApp(const FlashChat());
 }
 
@@ -25,7 +27,7 @@ class FlashChat extends StatelessWidget {
           bodyMedium: TextStyle(color: Colors.black54),
         ),
       ),
-      initialRoute: ChatScreen.id,
+      initialRoute: WelcomeScreen.id,
       routes: {
         ChatScreen.id: (context) => const ChatScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
