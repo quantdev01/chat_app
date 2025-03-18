@@ -3,15 +3,14 @@ import 'package:chat_app/screens/code_verification_screen.dart';
 import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/registration_screen.dart';
 import 'package:chat_app/screens/registration_screen_with_phone_number.dart';
+import 'package:chat_app/screens/remind_me/screens/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/screens/welcome_screen.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    
-  );
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(const FlashChat());
 }
 
@@ -24,10 +23,11 @@ class FlashChat extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         textTheme: const TextTheme(
-          bodyMedium: TextStyle(color: Colors.black54),
+          bodyMedium: TextStyle(color: Colors.white),
+          //* color: Colors.black54, previous color
         ),
       ),
-      initialRoute: WelcomeScreen.id,
+      initialRoute: Home.id,
       routes: {
         ChatScreen.id: (context) => const ChatScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
@@ -36,6 +36,7 @@ class FlashChat extends StatelessWidget {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         CodeVerificationScreen.id: (context) => const CodeVerificationScreen(),
         RegistrationScreen.id: (context) => const RegistrationScreen(),
+        Home.id: (context) => const Home(),
       },
     );
   }
