@@ -84,3 +84,55 @@ class BodyOnboarding extends StatelessWidget {
     );
   }
 }
+
+// TextFIeld customized
+
+class TextFieldCustom extends StatelessWidget {
+  final String hintText;
+  final Icon prefixIcon;
+  final TextInputType textType;
+  final bool isPassword;
+  const TextFieldCustom({
+    super.key,
+    required this.hintText,
+    required this.prefixIcon,
+    required this.textType,
+    required this.isPassword,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 77,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black,
+          width: 3,
+          style: BorderStyle.solid,
+        ),
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Center(
+          child: TextField(
+            keyboardType: textType,
+            obscureText: isPassword,
+            style: const TextStyle(
+              color: Colors.black,
+            ),
+            decoration: InputDecoration(
+              hintText: hintText,
+              hintStyle: const TextStyle(
+                color: Colors.grey,
+              ),
+              prefixIcon: prefixIcon,
+              border: InputBorder.none,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

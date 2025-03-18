@@ -3,9 +3,11 @@ import 'package:chat_app/screens/code_verification_screen.dart';
 import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/registration_screen.dart';
 import 'package:chat_app/screens/registration_screen_with_phone_number.dart';
+import 'package:chat_app/screens/remind_me/screens/login.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_1.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_2.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_3.dart';
+import 'package:chat_app/screens/remind_me/screens/registration.dart';
 import 'package:chat_app/screens/remind_me/screens/user_checking.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/screens/welcome_screen.dart';
@@ -29,7 +31,7 @@ class FlashChat extends StatelessWidget {
           //* color: Colors.black54, previous color
         ),
       ),
-      initialRoute: UserChecking.id,
+      initialRoute: Login.id,
       routes: {
         ChatScreen.id: (context) => const ChatScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
@@ -42,6 +44,8 @@ class FlashChat extends StatelessWidget {
         OnBoarding2.id: (context) => const OnBoarding2(),
         OnBoarding3.id: (context) => const OnBoarding3(),
         UserChecking.id: (context) => const UserChecking(),
+        Registration.id: (context) => const Registration(),
+        Login.id: (context) => const Login(),
       },
     );
   }
