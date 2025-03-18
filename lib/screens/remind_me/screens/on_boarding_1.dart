@@ -1,16 +1,17 @@
+import 'package:chat_app/screens/remind_me/screens/on_boarding_2.dart';
 import 'package:chat_app/screens/remind_me/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class OnBoarding1 extends StatefulWidget {
+  const OnBoarding1({super.key});
 
-  static const id = 'ui_exercise';
+  static const id = '/ui_exercise';
 
   @override
-  State<Home> createState() => _HomeState();
+  State<OnBoarding1> createState() => _OnBoarding1State();
 }
 
-class _HomeState extends State<Home> {
+class _OnBoarding1State extends State<OnBoarding1> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,7 +35,12 @@ class _HomeState extends State<Home> {
                   text: "Ne soyez plus en \nretard à l'Eglise",
                 ),
                 const SizedBox(height: 20),
-                const ButtonCustom()
+                ButtonCustom(
+                  onTap: () {
+                    Navigator.pushNamed(context, OnBoarding2.id);
+                  },
+                  text: 'SUIVANT',
+                )
               ],
             ),
           ),

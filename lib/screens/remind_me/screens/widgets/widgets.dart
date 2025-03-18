@@ -9,8 +9,12 @@ Image imageIcon({required String imagePath}) {
 }
 
 class ButtonCustom extends StatelessWidget {
+  final VoidCallback onTap;
+  final String text;
   const ButtonCustom({
     super.key,
+    required this.onTap,
+    required this.text,
   });
 
   @override
@@ -36,11 +40,11 @@ class ButtonCustom extends StatelessWidget {
         ),
       ),
       child: TextButton(
-        onPressed: () {},
+        onPressed: onTap,
         style: const ButtonStyle(),
-        child: const Text(
-          "SUIVANT",
-          style: TextStyle(
+        child: Text(
+          text,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
