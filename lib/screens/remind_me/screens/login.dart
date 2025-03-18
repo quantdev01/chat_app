@@ -1,4 +1,5 @@
 import 'package:chat_app/screens/remind_me/screens/constant.dart';
+import 'package:chat_app/screens/remind_me/screens/registration.dart';
 import 'package:chat_app/screens/remind_me/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -53,6 +54,14 @@ class _LoginState extends State<Login> {
             ButtonCustom(
               onTap: () {},
               text: "Se connecter",
+            ),
+            const SizedBox(height: 30),
+            GestureDetector(
+              onTap: () => Navigator.pushNamed(context, Registration.id),
+              child: const Icon(
+                Icons.arrow_back_sharp,
+                color: Colors.black,
+              ),
             )
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:chat_app/screens/remind_me/screens/constant.dart';
+import 'package:chat_app/screens/remind_me/screens/login.dart';
 import 'package:chat_app/screens/remind_me/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -53,9 +54,11 @@ class Registration extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             ButtonCustom(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, Login.id);
+              },
               text: "S'enregistrer",
-            )
+            ),
           ],
         ),
       ),

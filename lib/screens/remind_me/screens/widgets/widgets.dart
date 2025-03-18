@@ -114,7 +114,7 @@ class TextFieldCustom extends StatelessWidget {
         color: Colors.white,
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Center(
           child: TextField(
             keyboardType: textType,
