@@ -1,4 +1,6 @@
 import 'package:chat_app/screens/remind_me/screens/constant.dart';
+import 'package:chat_app/screens/remind_me/screens/registration.dart';
+import 'package:chat_app/screens/remind_me/screens/user_checking.dart';
 import 'package:chat_app/screens/remind_me/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -32,33 +34,37 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
               child: Column(children: [
                 Text(
                   'Confirmez votre email',
-                  style: kDisplayTextStyle,
+                  style: kTexStyleSignup,
                 ),
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     textFieldConfirm(
-                        controller: _controller0,
-                        focusScopeCurrent: _focusScope0,
-                        focusScopeNext: _focusScope1),
+                      controller: _controller0,
+                      focusScopeCurrent: _focusScope0,
+                      focusScopeNext: _focusScope1,
+                    ),
                     textFieldConfirm(
-                        controller: _controller1,
-                        focusScopeCurrent: _focusScope1,
-                        focusScopeNext: _focusScope2),
+                      controller: _controller1,
+                      focusScopeCurrent: _focusScope1,
+                      focusScopeNext: _focusScope2,
+                    ),
                     textFieldConfirm(
-                        controller: _controller2,
-                        focusScopeCurrent: _focusScope2,
-                        focusScopeNext: _focusScope3),
+                      controller: _controller2,
+                      focusScopeCurrent: _focusScope2,
+                      focusScopeNext: _focusScope3,
+                    ),
                     textFieldConfirm(
-                        controller: _controller3,
-                        focusScopeCurrent: _focusScope3,
-                        focusScopeNext: _focusScope4),
+                      controller: _controller3,
+                      focusScopeCurrent: _focusScope3,
+                      focusScopeNext: _focusScope4,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  'Renvoyez le mail',
+                  'Renvoyer le mail',
                   style: TextStyle(
                     color: kAccentColor,
                     decoration: TextDecoration.underline,
@@ -66,9 +72,20 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
                 ),
                 const SizedBox(height: 20),
                 ButtonCustom(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, UserChecking.id);
+                  },
                   text: 'Confirmez',
-                )
+                ),
+                const SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, Registration.id),
+                  child: const Icon(
+                    Icons.arrow_back_sharp,
+                    color: Colors.black,
+                  ),
+                ),
+                // Image.asset("images/arrow_icon.svg"),
               ]),
             ),
           ),

@@ -9,7 +9,10 @@ import 'package:chat_app/screens/remind_me/screens/on_boarding_1.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_2.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_3.dart';
 import 'package:chat_app/screens/remind_me/screens/registration.dart';
+import 'package:chat_app/screens/remind_me/screens/search_church.dart';
+import 'package:chat_app/screens/remind_me/screens/user_admin.dart';
 import 'package:chat_app/screens/remind_me/screens/user_checking.dart';
+import 'package:chat_app/screens/remind_me/screens/user_normal.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/screens/welcome_screen.dart';
 
@@ -32,7 +35,7 @@ class FlashChat extends StatelessWidget {
           //* color: Colors.black54, previous color
         ),
       ),
-      initialRoute: ConfirmEmail.id,
+      initialRoute: UserNormal.id,
       routes: {
         ChatScreen.id: (context) => const ChatScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
@@ -48,6 +51,9 @@ class FlashChat extends StatelessWidget {
         Registration.id: (context) => const Registration(),
         Login.id: (context) => const Login(),
         ConfirmEmail.id: (context) => const ConfirmEmail(),
+        UserNormal.id: (context) => const UserNormal(),
+        UserAdmin.id: (context) => const UserAdmin(),
+        SearchChurch.id: (context) => const SearchChurch(),
       },
     );
   }
