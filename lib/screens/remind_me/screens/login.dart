@@ -18,52 +18,71 @@ class _LoginState extends State<Login> {
         body: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 37),
       child: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Je me connecte",
-              style: kTexStyleSignup,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  "Je me connecte",
+                  style: kTexStyleSignup,
+                ),
+                const SizedBox(height: 20),
+                const TextFieldCustom(
+                  hintText: 'Email',
+                  prefixIcon: Icon(Icons.email),
+                  textType: TextInputType.emailAddress,
+                  isPassword: false,
+                ),
+                const SizedBox(height: 10),
+                const TextFieldCustom(
+                  hintText: 'Mot de passe',
+                  prefixIcon: Icon(Icons.password),
+                  textType: TextInputType.visiblePassword,
+                  isPassword: true,
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'Continuez avec google',
+                  style: TextStyle(
+                    color: Color.fromRGBO(255, 130, 5, 100),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Pas encore de compte ?',
+                      style: TextStyle(),
+                    ),
+                    GestureDetector(
+                      onTap: () =>
+                          Navigator.pushNamed(context, Registration.id),
+                      child: Text(
+                        ' Crée un compte',
+                        style: TextStyle(
+                          color: kAccentColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                ButtonCustom(
+                  onTap: () {},
+                  text: "Se connecter",
+                ),
+                const SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, Registration.id),
+                  child: const Icon(
+                    Icons.arrow_back_sharp,
+                    color: Colors.black,
+                  ),
+                )
+              ],
             ),
-            const SizedBox(height: 20),
-            const TextFieldCustom(
-              hintText: 'Email',
-              prefixIcon: Icon(Icons.email),
-              textType: TextInputType.emailAddress,
-              isPassword: false,
-            ),
-            const SizedBox(height: 10),
-            const TextFieldCustom(
-              hintText: 'Mot de passe',
-              prefixIcon: Icon(Icons.password),
-              textType: TextInputType.visiblePassword,
-              isPassword: true,
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'Continuez avec google',
-              style: TextStyle(
-                color: Color.fromRGBO(255, 130, 5, 100),
-              ),
-            ),
-            const Text(
-              'Pas encore de compte ? Crée un compte ',
-              style: TextStyle(),
-            ),
-            const SizedBox(height: 30),
-            ButtonCustom(
-              onTap: () {},
-              text: "Se connecter",
-            ),
-            const SizedBox(height: 30),
-            GestureDetector(
-              onTap: () => Navigator.pushNamed(context, Registration.id),
-              child: const Icon(
-                Icons.arrow_back_sharp,
-                color: Colors.black,
-              ),
-            )
-          ],
+          ),
         ),
       ),
     ));

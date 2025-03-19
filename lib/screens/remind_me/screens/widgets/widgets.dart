@@ -1,3 +1,4 @@
+import 'package:chat_app/screens/remind_me/screens/constant.dart';
 import 'package:flutter/material.dart';
 
 Image imageIcon({required String imagePath}) {
@@ -77,9 +78,7 @@ class BodyOnboarding extends StatelessWidget {
           child: Text(
         text,
         textAlign: TextAlign.center,
-        style: const TextStyle(
-          fontSize: 29,
-        ),
+        style: kDisplayTextStyle,
       )),
     );
   }
@@ -128,6 +127,50 @@ class TextFieldCustom extends StatelessWidget {
                 color: Colors.grey,
               ),
               prefixIcon: prefixIcon,
+              border: InputBorder.none,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TextFieldCustomConfirmEmail extends StatelessWidget {
+  final TextEditingController controller;
+  const TextFieldCustomConfirmEmail({
+    super.key,
+    required this.controller,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 77,
+      width: 77,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black,
+          width: 3,
+          style: BorderStyle.solid,
+        ),
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Center(
+          child: TextField(
+            controller: controller,
+            keyboardType: TextInputType.number,
+            style: const TextStyle(
+              color: Colors.black,
+            ),
+            decoration: const InputDecoration(
+              hintText: '0',
+              hintStyle: TextStyle(
+                color: Colors.grey,
+              ),
               border: InputBorder.none,
             ),
           ),

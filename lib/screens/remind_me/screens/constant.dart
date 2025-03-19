@@ -6,3 +6,7 @@ TextStyle kTexStyleSignup = const TextStyle(
 );
 
 Color kAccentColor = const Color.fromRGBO(255, 130, 5, 100);
+
+TextStyle kDisplayTextStyle = const TextStyle(
+  fontSize: 29,
+);

@@ -3,6 +3,7 @@ import 'package:chat_app/screens/code_verification_screen.dart';
 import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/registration_screen.dart';
 import 'package:chat_app/screens/registration_screen_with_phone_number.dart';
+import 'package:chat_app/screens/remind_me/screens/confirm_email.dart';
 import 'package:chat_app/screens/remind_me/screens/login.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_1.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_2.dart';
@@ -31,7 +32,7 @@ class FlashChat extends StatelessWidget {
           //* color: Colors.black54, previous color
         ),
       ),
-      initialRoute: Login.id,
+      initialRoute: ConfirmEmail.id,
       routes: {
         ChatScreen.id: (context) => const ChatScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
@@ -46,6 +47,7 @@ class FlashChat extends StatelessWidget {
         UserChecking.id: (context) => const UserChecking(),
         Registration.id: (context) => const Registration(),
         Login.id: (context) => const Login(),
+        ConfirmEmail.id: (context) => const ConfirmEmail(),
       },
     );
   }

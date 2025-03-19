@@ -69,6 +69,7 @@ class _RegistrationScreenWithPhoneNumberState
 
   @override
   Widget build(BuildContext context) {
+    log(_dropdownValue);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(

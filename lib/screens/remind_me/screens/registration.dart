@@ -13,53 +13,71 @@ class Registration extends StatelessWidget {
         body: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 37),
       child: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Je crée mon compte",
-              style: kTexStyleSignup,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text(
+                  "Je crée mon compte",
+                  style: kTexStyleSignup,
+                ),
+                const SizedBox(height: 20),
+                const TextFieldCustom(
+                  hintText: 'Email',
+                  prefixIcon: Icon(Icons.email),
+                  textType: TextInputType.emailAddress,
+                  isPassword: false,
+                ),
+                const SizedBox(height: 10),
+                const TextFieldCustom(
+                  hintText: 'Mot de passe',
+                  prefixIcon: Icon(Icons.password),
+                  textType: TextInputType.visiblePassword,
+                  isPassword: true,
+                ),
+                const SizedBox(height: 10),
+                const TextFieldCustom(
+                  hintText: 'Confirmez le mot de passe',
+                  prefixIcon: Icon(Icons.password),
+                  textType: TextInputType.visiblePassword,
+                  isPassword: true,
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  'Continuez avec google',
+                  style: TextStyle(
+                    color: kAccentColor,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Déjà un compte ?',
+                      style: TextStyle(),
+                    ),
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, Login.id),
+                      child: Text(
+                        ' Connecter vous ici',
+                        style: TextStyle(
+                          color: kAccentColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                ButtonCustom(
+                  onTap: () {
+                    Navigator.pushNamed(context, Login.id);
+                  },
+                  text: "S'enregistrer",
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
-            const TextFieldCustom(
-              hintText: 'Email',
-              prefixIcon: Icon(Icons.email),
-              textType: TextInputType.emailAddress,
-              isPassword: false,
-            ),
-            const SizedBox(height: 10),
-            const TextFieldCustom(
-              hintText: 'Mot de passe',
-              prefixIcon: Icon(Icons.password),
-              textType: TextInputType.visiblePassword,
-              isPassword: true,
-            ),
-            const SizedBox(height: 10),
-            const TextFieldCustom(
-              hintText: 'Confirmez le mot de passe',
-              prefixIcon: Icon(Icons.password),
-              textType: TextInputType.visiblePassword,
-              isPassword: true,
-            ),
-            const SizedBox(height: 30),
-            const Text(
-              'Continuez avec google',
-              style: TextStyle(
-                color: Color.fromRGBO(255, 130, 5, 100),
-              ),
-            ),
-            const Text(
-              'Déjà un compte ? Connecter vous ici',
-              style: TextStyle(),
-            ),
-            const SizedBox(height: 30),
-            ButtonCustom(
-              onTap: () {
-                Navigator.pushNamed(context, Login.id);
-              },
-              text: "S'enregistrer",
-            ),
-          ],
+          ),
         ),
       ),
     ));
