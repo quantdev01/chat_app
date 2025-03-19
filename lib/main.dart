@@ -5,6 +5,7 @@ import 'package:chat_app/screens/registration_screen.dart';
 import 'package:chat_app/screens/registration_screen_with_phone_number.dart';
 import 'package:chat_app/screens/remind_me/screens/confirm_email.dart';
 import 'package:chat_app/screens/remind_me/screens/login.dart';
+import 'package:chat_app/screens/remind_me/screens/main_user_page.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_1.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_2.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_3.dart';
@@ -54,6 +55,7 @@ class FlashChat extends StatelessWidget {
         UserNormal.id: (context) => const UserNormal(),
         UserAdmin.id: (context) => const UserAdmin(),
         SearchChurch.id: (context) => const SearchChurch(),
+        MainUserPage.id: (context) => const MainUserPage(),
       },
     );
   }

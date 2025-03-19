@@ -1,4 +1,5 @@
 import 'package:chat_app/screens/remind_me/screens/constant.dart';
+import 'package:chat_app/screens/remind_me/screens/main_user_page.dart';
 import 'package:chat_app/screens/remind_me/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -67,46 +68,51 @@ class _SearchChurchState extends State<SearchChurch> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) => SizedBox(
                   width: double.infinity,
-                  child: Card(
-                    surfaceTintColor: Colors.amber,
-                    borderOnForeground: true,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            height: 68,
-                            width: 68,
-                            decoration: BoxDecoration(
-                              color: Colors.greenAccent,
-                              borderRadius: BorderRadius.circular(100),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, MainUserPage.id);
+                    },
+                    child: Card(
+                      surfaceTintColor: Colors.amber,
+                      borderOnForeground: true,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              height: 68,
+                              width: 68,
+                              decoration: BoxDecoration(
+                                color: Colors.greenAccent,
+                                borderRadius: BorderRadius.circular(100),
+                              ),
                             ),
-                          ),
-                          const Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Eglise Couronne Eclatante',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
+                            const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Eglise Couronne Eclatante',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                'Infos Churchs Lorem',
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 68, 68, 68),
+                                SizedBox(height: 10),
+                                Text(
+                                  'Infos Churchs Lorem',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 68, 68, 68),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          GestureDetector(
-                              onTap: () {},
-                              child: const Icon(Icons.push_pin_outlined))
-                        ],
+                              ],
+                            ),
+                            GestureDetector(
+                                onTap: () {},
+                                child: const Icon(Icons.push_pin_outlined))
+                          ],
+                        ),
                       ),
                     ),
                   ),
