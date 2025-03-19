@@ -1,5 +1,5 @@
-import 'package:chat_app/constants.dart';
 import 'package:chat_app/screens/remind_me/screens/constant.dart';
+import 'package:chat_app/screens/remind_me/screens/pick_event.dart';
 import 'package:flutter/material.dart';
 
 class MainUserPage extends StatefulWidget {
@@ -74,36 +74,44 @@ class _MainUserPageState extends State<MainUserPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
-                  height: 160,
-                  width: 160,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(
-                        width: 0.5,
-                        color: const Color.fromARGB(253, 190, 190, 190)),
-                    borderRadius: BorderRadius.circular(11),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color.fromARGB(253, 190, 190, 190),
-                        offset: Offset(3, 3),
-                        blurRadius: 5,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        '7h30 - 08h30',
-                        style: kOrangeText,
-                      ),
-                      Text(
-                        'Lundi',
-                        style: kRegularText,
-                      ),
-                      const Text('15h30 - 17h00'),
-                    ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      PickEvent.id,
+                    );
+                  },
+                  child: Container(
+                    height: 160,
+                    width: 160,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                          width: 0.5,
+                          color: const Color.fromARGB(253, 190, 190, 190)),
+                      borderRadius: BorderRadius.circular(11),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color.fromARGB(253, 190, 190, 190),
+                          offset: Offset(3, 3),
+                          blurRadius: 5,
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          '7h30 - 08h30',
+                          style: kOrangeText,
+                        ),
+                        Text(
+                          'Lundi',
+                          style: kRegularText,
+                        ),
+                        const Text('15h30 - 17h00'),
+                      ],
+                    ),
                   ),
                 ),
                 Container(

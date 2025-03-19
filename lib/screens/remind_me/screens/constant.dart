@@ -15,8 +15,18 @@ TextStyle kRegularText = const TextStyle(
   fontSize: 25,
   fontWeight: FontWeight.bold,
 );
-
+TextStyle kBigClockNormal = const TextStyle(
+  fontSize: 48,
+  fontWeight: FontWeight.w500,
+);
+TextStyle kBigClockOrange = TextStyle(
+  fontSize: 48,
+  color: kAccentColor,
+  fontWeight: FontWeight.w500,
+);
 TextStyle kOrangeText = TextStyle(color: kAccentColor);
-TextStyle kBlackText = const TextStyle(color: Colors.black);
+TextStyle kNormalText = const TextStyle(color: Colors.black);
 
 const EdgeInsets kMyPaddingLayout = EdgeInsets.symmetric(horizontal: 30);
+
+const kSoftAccentColor = Color.fromARGB(255, 255, 248, 240);

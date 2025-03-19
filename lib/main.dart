@@ -9,6 +9,7 @@ import 'package:chat_app/screens/remind_me/screens/main_user_page.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_1.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_2.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_3.dart';
+import 'package:chat_app/screens/remind_me/screens/pick_event.dart';
 import 'package:chat_app/screens/remind_me/screens/registration.dart';
 import 'package:chat_app/screens/remind_me/screens/search_church.dart';
 import 'package:chat_app/screens/remind_me/screens/user_admin.dart';
@@ -36,7 +37,7 @@ class FlashChat extends StatelessWidget {
           //* color: Colors.black54, previous color
         ),
       ),
-      initialRoute: SearchChurch.id,
+      initialRoute: PickEvent.id,
       routes: {
         ChatScreen.id: (context) => const ChatScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
@@ -56,6 +57,7 @@ class FlashChat extends StatelessWidget {
         UserAdmin.id: (context) => const UserAdmin(),
         SearchChurch.id: (context) => const SearchChurch(),
         MainUserPage.id: (context) => const MainUserPage(),
+        PickEvent.id: (context) => const PickEvent()
       },
     );
   }
