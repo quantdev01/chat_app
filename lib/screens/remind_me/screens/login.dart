@@ -45,6 +45,7 @@ class _LoginState extends State<Login> {
                   'Continuez avec google',
                   style: TextStyle(
                     color: Color.fromRGBO(255, 130, 5, 100),
+                    decoration: TextDecoration.underline,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -62,6 +63,7 @@ class _LoginState extends State<Login> {
                         ' Crée un compte',
                         style: TextStyle(
                           color: kAccentColor,
+                          decoration: TextDecoration.underline,
                         ),
                       ),
                     ),

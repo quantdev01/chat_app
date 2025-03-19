@@ -12,6 +12,7 @@ Image imageIcon({required String imagePath}) {
 class ButtonCustom extends StatelessWidget {
   final VoidCallback onTap;
   final String text;
+
   const ButtonCustom({
     super.key,
     required this.onTap,
@@ -26,7 +27,7 @@ class ButtonCustom extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(
-          color: Colors.black,
+          color: const Color.fromARGB(255, 8, 8, 8),
           style: BorderStyle.solid,
           strokeAlign: BorderSide.strokeAlignCenter,
           width: 3,
@@ -106,7 +107,7 @@ class TextFieldCustom extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.black,
-          width: 3,
+          width: 2,
           style: BorderStyle.solid,
         ),
         borderRadius: BorderRadius.circular(10),
@@ -136,22 +137,18 @@ class TextFieldCustom extends StatelessWidget {
   }
 }
 
-class TextFieldCustomConfirmEmail extends StatelessWidget {
-  final TextEditingController controller;
-  const TextFieldCustomConfirmEmail({
-    super.key,
-    required this.controller,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
+Widget textFieldConfirm({
+  required FocusNode focusScopeCurrent,
+  required TextEditingController controller,
+  required FocusNode focusScopeNext,
+}) =>
+    Container(
       height: 77,
       width: 77,
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.black,
-          width: 3,
+          width: 2,
           style: BorderStyle.solid,
         ),
         borderRadius: BorderRadius.circular(10),
@@ -160,22 +157,34 @@ class TextFieldCustomConfirmEmail extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Center(
-          child: TextField(
-            controller: controller,
-            keyboardType: TextInputType.number,
-            style: const TextStyle(
-              color: Colors.black,
-            ),
-            decoration: const InputDecoration(
-              hintText: '0',
-              hintStyle: TextStyle(
-                color: Colors.grey,
+          child: Builder(builder: (innerContext) {
+            return Form(
+              child: TextFormField(
+                focusNode: focusScopeCurrent,
+                onChanged: (value) {
+                  if (value.length == 1) {
+                    FocusScope.of(innerContext).requestFocus(focusScopeNext);
+                  }
+                },
+                maxLength: 1,
+                controller: controller,
+                keyboardType: TextInputType.number,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 32,
+                ),
+                textAlign: TextAlign.center,
+                decoration: const InputDecoration(
+                  hintText: '0',
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 32,
+                  ),
+                  border: InputBorder.none,
+                ),
               ),
-              border: InputBorder.none,
-            ),
-          ),
+            );
+          }),
         ),
       ),
     );
-  }
-}

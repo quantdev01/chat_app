@@ -11,7 +11,7 @@ class Registration extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 37),
+      padding: kMyPaddingLayout,
       child: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -47,6 +47,7 @@ class Registration extends StatelessWidget {
                   'Continuez avec google',
                   style: TextStyle(
                     color: kAccentColor,
+                    decoration: TextDecoration.underline,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -63,6 +64,7 @@ class Registration extends StatelessWidget {
                         ' Connecter vous ici',
                         style: TextStyle(
                           color: kAccentColor,
+                          decoration: TextDecoration.underline,
                         ),
                       ),
                     ),
