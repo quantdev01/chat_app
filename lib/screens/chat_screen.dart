@@ -9,6 +9,7 @@ class ChatScreen extends StatefulWidget {
   static const String id = 'chat_screen';
 
   @override
+  // ignore: library_private_types_in_public_api
   _ChatScreenState createState() => _ChatScreenState();
 }
 
