@@ -205,9 +205,9 @@ const TimePickerDialog timePickerDialog = TimePickerDialog(
 //* user profile picture
 
 class PickupProfile extends StatelessWidget {
-  final image_path;
+  final String imagePath;
   const PickupProfile({
-    required this.image_path,
+    required this.imagePath,
     super.key,
   });
 
@@ -222,7 +222,7 @@ class PickupProfile extends StatelessWidget {
             color: Colors.green,
             borderRadius: BorderRadius.circular(100),
           ),
-          child: Image.asset(image_path),
+          child: Image.asset(imagePath),
         ),
         Positioned(
           bottom: 0,

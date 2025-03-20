@@ -1,5 +1,5 @@
+import 'package:chat_app/screens/remind_me/screens/admin_user/add_church_event.dart';
 import 'package:chat_app/screens/remind_me/screens/utils/constant.dart';
-import 'package:chat_app/screens/remind_me/screens/normal_user/search_church.dart';
 import 'package:chat_app/screens/remind_me/screens/auth/user_checking.dart';
 import 'package:chat_app/screens/remind_me/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -24,15 +24,16 @@ class _AddChurchNameState extends State<AddChurchName> {
             children: [
               Text(
                 "Entrez le nom de l'Eglise",
+                textAlign: TextAlign.center,
                 style: kTexStyleSignup,
               ),
               const SizedBox(height: 20),
               const PickupProfile(
-                image_path: 'images/logo.png',
+                imagePath: 'images/logo.png',
               ),
               const SizedBox(height: 30),
               const TextFieldCustom(
-                hintText: 'Entrez votre nom',
+                hintText: "Nom de l'Eglise",
                 prefixIcon: Icon(Icons.perm_identity_outlined),
                 textType: TextInputType.name,
                 isPassword: false,
@@ -40,7 +41,7 @@ class _AddChurchNameState extends State<AddChurchName> {
               const SizedBox(height: 20),
               ButtonCustom(
                   onTap: () {
-                    Navigator.pushNamed(context, SearchChurch.id);
+                    Navigator.pushNamed(context, AddChurchEvent.id);
                   },
                   text: 'Continuez'),
               const SizedBox(height: 20),

@@ -28,7 +28,7 @@ class _UserNormalState extends State<UserNormal> {
               ),
               const SizedBox(height: 20),
               const PickupProfile(
-                image_path: 'images/logo.png',
+                imagePath: 'images/logo.png',
               ),
               const SizedBox(height: 30),
               const TextFieldCustom(
