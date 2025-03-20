@@ -1,4 +1,4 @@
-import 'package:chat_app/screens/remind_me/screens/user_checking.dart';
+import 'package:chat_app/screens/remind_me/screens/auth/user_checking.dart';
 import 'package:chat_app/screens/remind_me/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 

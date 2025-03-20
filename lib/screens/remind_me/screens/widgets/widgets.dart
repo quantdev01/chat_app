@@ -1,4 +1,4 @@
-import 'package:chat_app/screens/remind_me/screens/constant.dart';
+import 'package:chat_app/screens/remind_me/screens/utils/constant.dart';
 import 'package:flutter/material.dart';
 
 Image imageIcon({required String imagePath}) {

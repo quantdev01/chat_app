@@ -1,5 +1,5 @@
-import 'package:chat_app/screens/remind_me/screens/user_normal.dart';
-import 'package:chat_app/screens/remind_me/screens/user_admin.dart';
+import 'package:chat_app/screens/remind_me/screens/normal_user/user_normal.dart';
+import 'package:chat_app/screens/remind_me/screens/admin_user/user_admin.dart';
 import 'package:chat_app/screens/remind_me/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 

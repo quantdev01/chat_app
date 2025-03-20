@@ -1,6 +1,6 @@
-import 'package:chat_app/screens/remind_me/screens/constant.dart';
-import 'package:chat_app/screens/remind_me/screens/search_church.dart';
-import 'package:chat_app/screens/remind_me/screens/user_checking.dart';
+import 'package:chat_app/screens/remind_me/screens/utils/constant.dart';
+import 'package:chat_app/screens/remind_me/screens/normal_user/search_church.dart';
+import 'package:chat_app/screens/remind_me/screens/auth/user_checking.dart';
 import 'package:chat_app/screens/remind_me/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 

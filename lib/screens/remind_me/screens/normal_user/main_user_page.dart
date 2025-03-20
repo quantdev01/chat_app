@@ -1,5 +1,5 @@
-import 'package:chat_app/screens/remind_me/screens/constant.dart';
-import 'package:chat_app/screens/remind_me/screens/pick_event.dart';
+import 'package:chat_app/screens/remind_me/screens/utils/constant.dart';
+import 'package:chat_app/screens/remind_me/screens/normal_user/pick_event.dart';
 import 'package:flutter/material.dart';
 
 class MainUserPage extends StatefulWidget {
