@@ -4,6 +4,7 @@ import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/registration_screen.dart';
 import 'package:chat_app/screens/registration_screen_with_phone_number.dart';
 import 'package:chat_app/screens/remind_me/screens/admin_user/add_church_event.dart';
+import 'package:chat_app/screens/remind_me/screens/admin_user/main_admin_page.dart';
 import 'package:chat_app/screens/remind_me/screens/admin_user/add_church_name.dart';
 import 'package:chat_app/screens/remind_me/screens/auth/confirm_email.dart';
 import 'package:chat_app/screens/remind_me/screens/utils/constant.dart';
@@ -46,7 +47,7 @@ class FlashChat extends StatelessWidget {
           //* color: Colors.black54, previous color
         ),
       ),
-      initialRoute: AddChurchEvent.id,
+      initialRoute: OnBoarding1.id,
       routes: {
         ChatScreen.id: (context) => const ChatScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
@@ -68,6 +69,7 @@ class FlashChat extends StatelessWidget {
         MainUserPage.id: (context) => const MainUserPage(),
         PickEvent.id: (context) => const PickEvent(),
         AddChurchName.id: (context) => const AddChurchName(),
+        MainAdminPage.id: (context) => const MainAdminPage(),
         AddChurchEvent.id: (context) => const AddChurchEvent(),
       },
     );

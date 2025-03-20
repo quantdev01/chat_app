@@ -1,4 +1,4 @@
-import 'package:chat_app/screens/remind_me/screens/admin_user/add_church_event.dart';
+import 'package:chat_app/screens/remind_me/screens/admin_user/main_admin_page.dart';
 import 'package:chat_app/screens/remind_me/screens/utils/constant.dart';
 import 'package:chat_app/screens/remind_me/screens/auth/user_checking.dart';
 import 'package:chat_app/screens/remind_me/screens/widgets/widgets.dart';
@@ -41,7 +41,7 @@ class _AddChurchNameState extends State<AddChurchName> {
               const SizedBox(height: 20),
               ButtonCustom(
                   onTap: () {
-                    Navigator.pushNamed(context, AddChurchEvent.id);
+                    Navigator.pushNamed(context, MainAdminPage.id);
                   },
                   text: 'Continuez'),
               const SizedBox(height: 20),

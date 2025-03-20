@@ -56,6 +56,47 @@ class ButtonCustom extends StatelessWidget {
   }
 }
 
+class ButtonCustomWithIcon extends StatelessWidget {
+  final VoidCallback onTap;
+  final Widget widget;
+
+  const ButtonCustomWithIcon({
+    super.key,
+    required this.onTap,
+    required this.widget,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 77,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(
+          color: const Color.fromARGB(255, 8, 8, 8),
+          style: BorderStyle.solid,
+          strokeAlign: BorderSide.strokeAlignCenter,
+          width: 3,
+        ),
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: List.filled(
+          10,
+          const BoxShadow(
+            color: Colors.black,
+            offset: Offset(10, 0),
+          ),
+        ),
+      ),
+      child: TextButton(
+        onPressed: onTap,
+        style: const ButtonStyle(),
+        child: widget,
+      ),
+    );
+  }
+}
+
 class BodyOnboarding extends StatelessWidget {
   final dynamic imagePath;
   final dynamic text;
