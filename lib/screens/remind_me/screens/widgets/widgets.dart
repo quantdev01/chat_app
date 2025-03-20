@@ -188,3 +188,62 @@ Widget textFieldConfirm({
         ),
       ),
     );
+
+const TimePickerDialog timePickerDialog = TimePickerDialog(
+  cancelText: 'Annuler',
+  confirmText: 'OK',
+  helpText: 'Temps',
+  errorInvalidText: 'incorrect',
+  hourLabelText: 'Heure',
+  initialEntryMode: TimePickerEntryMode.dialOnly,
+  initialTime: TimeOfDay(
+    hour: 00,
+    minute: 00,
+  ),
+);
+
+//* user profile picture
+
+class PickupProfile extends StatelessWidget {
+  final image_path;
+  const PickupProfile({
+    required this.image_path,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          width: 140,
+          height: 140,
+          decoration: BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.circular(100),
+          ),
+          child: Image.asset(image_path),
+        ),
+        Positioned(
+          bottom: 0,
+          right: 0,
+          child: Container(
+            width: 39,
+            height: 39,
+            decoration: BoxDecoration(
+              color: kAccentColor,
+              borderRadius: BorderRadius.circular(100),
+            ),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.photo_camera_outlined,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

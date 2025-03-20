@@ -3,7 +3,9 @@ import 'package:chat_app/screens/code_verification_screen.dart';
 import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/registration_screen.dart';
 import 'package:chat_app/screens/registration_screen_with_phone_number.dart';
+import 'package:chat_app/screens/remind_me/screens/add_church_name.dart';
 import 'package:chat_app/screens/remind_me/screens/confirm_email.dart';
+import 'package:chat_app/screens/remind_me/screens/constant.dart';
 import 'package:chat_app/screens/remind_me/screens/login.dart';
 import 'package:chat_app/screens/remind_me/screens/main_user_page.dart';
 import 'package:chat_app/screens/remind_me/screens/on_boarding_1.dart';
@@ -32,12 +34,18 @@ class FlashChat extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light().copyWith(
+        timePickerTheme: TimePickerThemeData(
+          backgroundColor: kSoftAccentColor,
+          dialHandColor: kAccentColor,
+        ),
         textTheme: const TextTheme(
+          bodyLarge: TextStyle(color: Colors.red),
           bodyMedium: TextStyle(color: Colors.black),
+
           //* color: Colors.black54, previous color
         ),
       ),
-      initialRoute: PickEvent.id,
+      initialRoute: UserAdmin.id,
       routes: {
         ChatScreen.id: (context) => const ChatScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
@@ -57,7 +65,8 @@ class FlashChat extends StatelessWidget {
         UserAdmin.id: (context) => const UserAdmin(),
         SearchChurch.id: (context) => const SearchChurch(),
         MainUserPage.id: (context) => const MainUserPage(),
-        PickEvent.id: (context) => const PickEvent()
+        PickEvent.id: (context) => const PickEvent(),
+        AddChurchName.id: (context) => const AddChurchName(),
       },
     );
   }

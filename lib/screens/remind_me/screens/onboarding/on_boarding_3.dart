@@ -1,4 +1,4 @@
-import 'package:chat_app/screens/remind_me/screens/on_boarding_2.dart';
+import 'package:chat_app/screens/remind_me/screens/user_checking.dart';
 import 'package:chat_app/screens/remind_me/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +25,7 @@ class OnBoarding3 extends StatelessWidget {
               const SizedBox(height: 20),
               ButtonCustom(
                 onTap: () {
-                  Navigator.pushNamed(context, OnBoarding2.id);
+                  Navigator.pushNamed(context, UserChecking.id);
                 },
                 text: 'SUIVANT',
               )

@@ -15,12 +15,15 @@ class _MainUserPageState extends State<MainUserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: Icon(
-              Icons.notifications_none,
-              size: 30,
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.notifications_none,
+                size: 30,
+              ),
             ),
           ),
         ],

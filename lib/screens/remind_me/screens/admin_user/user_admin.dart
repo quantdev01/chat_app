@@ -1,18 +1,19 @@
+import 'package:chat_app/screens/remind_me/screens/add_church_name.dart';
 import 'package:chat_app/screens/remind_me/screens/constant.dart';
 import 'package:chat_app/screens/remind_me/screens/search_church.dart';
 import 'package:chat_app/screens/remind_me/screens/user_checking.dart';
 import 'package:chat_app/screens/remind_me/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class UserNormal extends StatefulWidget {
-  const UserNormal({super.key});
-  static const id = '/user_normal';
+class UserAdmin extends StatefulWidget {
+  const UserAdmin({super.key});
+  static const id = '/user_admin';
 
   @override
-  State<UserNormal> createState() => _UserNormalState();
+  State<UserAdmin> createState() => _UserAdminState();
 }
 
-class _UserNormalState extends State<UserNormal> {
+class _UserAdminState extends State<UserAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,36 +27,6 @@ class _UserNormalState extends State<UserNormal> {
                 'Entrez votre nom',
                 style: kTexStyleSignup,
               ),
-              const SizedBox(height: 20),
-              Stack(
-                children: [
-                  Container(
-                    width: 140,
-                    height: 140,
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    child: Image.asset('images/logo.png'),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 39,
-                      height: 39,
-                      decoration: BoxDecoration(
-                        color: kAccentColor,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      child: const Icon(
-                        Icons.photo_camera_outlined,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(height: 30),
               const TextFieldCustom(
                 hintText: 'Entrez votre nom',
@@ -66,7 +37,7 @@ class _UserNormalState extends State<UserNormal> {
               const SizedBox(height: 20),
               ButtonCustom(
                   onTap: () {
-                    Navigator.pushNamed(context, SearchChurch.id);
+                    Navigator.pushNamed(context, AddChurchName.id);
                   },
                   text: 'Continuez'),
               const SizedBox(height: 20),
