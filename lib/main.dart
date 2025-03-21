@@ -47,7 +47,7 @@ class FlashChat extends StatelessWidget {
           //* color: Colors.black54, previous color
         ),
       ),
-      initialRoute: OnBoarding1.id,
+      initialRoute: AddChurchEvent.id,
       routes: {
         ChatScreen.id: (context) => const ChatScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
